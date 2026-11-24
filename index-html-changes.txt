@@ -1,0 +1,25 @@
+ADD THESE LINES INSIDE <head> in index.html (before </head>):
+
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#4f46e5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+
+ADD THIS SCRIPT BEFORE </body>, after the existing app.js script:
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./service-worker.js")
+        .catch((error) => console.error("Service worker registration failed:", error));
+    });
+  }
+</script>
+
+IMPORTANT:
+- Keep the existing <script src="app.js"></script>.
+- Do not replace your existing index.html, app.js, or style.css.
+- Upload manifest.json, service-worker.js, and the icons folder to the repository root.
+- The icons folder must contain icon-192.png and icon-512.png.
+- After GitHub Pages finishes deploying, open the site in Chrome, refresh it, then use Chrome menu > Install app (or Add to Home screen).
