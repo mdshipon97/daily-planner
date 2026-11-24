@@ -8,7 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" /><link rel="manifest" href="./manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
 </head>
 <body>
   <div class="app-shell">
@@ -118,5 +121,12 @@
   <dialog id="simpleDialog" class="modal"><form method="dialog" id="simpleForm"><div class="modal-head"><div><p class="eyebrow" id="simpleEyebrow">QUICK ADD</p><h2 id="simpleTitle">Add item</h2></div><button class="icon-btn close-modal" aria-label="Close">×</button></div><div id="simpleFields"></div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelSimple">Cancel</button><button class="primary-btn" id="saveSimple">Save</button></div></form></dialog>
   <div id="toast" class="toast" role="status"></div>
   <script src="app.js"></script>
-</body>
+</body><script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js")
+      .catch(error => console.error(error));
+  });
+}
+</script>
 </html>
